@@ -1,1 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Home</title>
+<style>
+body {
+  margin: 0;
+  padding: 40px;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to bottom, #fff8fa, #f6c1d1, #d46aa2);
+  transition: background 0.3s ease;
+  min-height: 200vh;
+  color: #222;
+}
 
+/* Container for text + image */
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: nowrap;  /* keep them side-by-side on wide screens */
+  min-width: 800px;   /* ensures they don't collapse too soon */
+}
+
+/* Text section */
+.text-section {
+  flex: 1 1 55%;
+}
+
+/* Image section */
+.image-section {
+  flex: 1 1 35%;
+  text-align: center;
+}
+
+.image-section img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Heading styles */
+h1 {
+  color: #c63b7c;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 18px;
+  color: #333;
+  line-height: 1.6;
+  font-weight: normal;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 20px;
+  border-left: 5px solid #c63b7c;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* 📱 Make it mobile-friendly */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;  /* stack text and image vertically on small screens */
+    min-width: unset;
+  }
+
+  .text-section, .image-section {
+    flex: 1 1 100%;
+  }
+
+  .image-section {
+    margin-top: 20px;
+  }
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+  <div class="text-section">
+    <h1>Welcome to the Online Bookstore</h1>
+    <h2>
+      We are delighted to welcome you to our official website. GL Bajaj Institute of Technology and Management is more than an institution — it is a thriving community of learners, educators, and innovators. <br><br>
+      Here, you can explore our programs, learn about campus life, and connect with the people who make GL Bajaj a place to belong, grow, and achieve.
+    </h2>
+  </div>
+
+  <div class="image-section">
+    <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794" alt="Bookshelf">
+  </div>
+</div>
+
+</body>
+</html>                     
