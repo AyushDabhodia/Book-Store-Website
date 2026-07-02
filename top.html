@@ -1,1 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Top Navigation</title>
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #b13372;
+  color: white;
+  overflow: hidden; /* no scrollbars */
+}
 
+/* Container for entire top frame */
+.top-container {
+  display: flex;
+  flex-direction: column; /* stack logo row + heading + nav */
+  height: 150px;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* Logo row (left-aligned) */
+.logo-row {
+  display: flex;
+  align-items: center;
+  height: 50px;
+}
+
+.logo-row .logo img {
+  height: 50px;
+}
+
+/* Heading (centered) */
+.header-title {
+  text-align: center;
+  margin-top: 1px;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+/* Nav row below heading */
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* keeps left + center balanced */
+  height: 40px;
+  margin-bottom: 10px;
+  padding: 0 40px; /* adds space on both sides */
+  box-sizing: border-box;
+}
+
+/* Subjects label (non-clickable) */
+nav .subjects-label {
+  font-weight: bold;
+  font-size: 18px;
+  color: white;
+  cursor: default;
+}
+
+/* Centered nav links */
+nav .center-links {
+  display: flex;
+  gap: 120px; /* spacing between links */
+  margin: 0 auto;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+nav a:hover {
+  background: #da2ba8;
+}
+</style>
+</head>
+<body>
+
+<div class="top-container">
+  <!-- Logo row -->
+  <div class="logo-row">
+    <div class="logo">
+      <img src="logo.png" alt="College Logo">
+    </div>
+  </div>
+
+  <!-- Heading (centered) -->
+  <div class="header-title">GL Bajaj Online Bookstore</div>
+ 
+  <!-- Nav row -->
+  <nav>
+    <div class="subjects-label">Subjects</div>
+    <div class="center-links">
+      <a href="home.html" target="right">Home</a>
+      <a href="login.html" target="right">Login</a>
+      <a href="reg.html" target="right">Registration</a>
+      <a href="catalouge.html" target="right">Catalogue</a>
+      <a href="cart.html" target="right">Cart</a>
+    </div>
+  </nav>
+</div>
+
+</body>
+</html>
