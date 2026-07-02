@@ -1,1 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Catalogue</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f8f8;
+      margin: 20px;
+    }
 
+    h1 {
+      text-align: center;
+      color: #ad2058;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      margin-top: 30px;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 12px;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    th {
+      background-color: #b4436e;
+      color: white;
+      font-size: 16px;
+    }
+
+    td img {
+      width: 80px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    .price {
+      color: #96117b;
+      font-weight: bold;
+    }
+
+    .add-btn {
+      background-color: #640741;
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .add-btn:hover {
+      background-color: #911567;
+    }
+
+    #cart {
+      margin-top: 30px;
+      padding: 15px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    #cart h2 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    #cart-list {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    #cart-list li {
+      margin: 5px 0;
+      padding: 6px;
+      border-bottom: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+  <h1>Book Catalogue</h1>
+
+  <table>
+    <tr>
+      <th>Image</th>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Branch</th>
+      <th>Price</th>
+      <th>Add to Cart</th>
+    </tr>
+
+    <tr>
+      <td><img src="https://tse3.mm.bing.net/th/id/OIP.ENTDslbJQpcV63lxgtHCuwHaIc?pid=Api&P=0&h=220" alt="Introduction to Algorithm"></td>
+      <td>Introduction to Algorithm</td>
+      <td>Thomas H. Cormen</td>
+      <td>Computer Science</td>
+      <td class="price">₹850</td>
+      <td><button class="add-btn" onclick="addToCart('Introduction to Algorithm', '850')">Add to Cart</button></td>
+    </tr>
+
+    <tr>
+      <td><img src="https://tse3.mm.bing.net/th/id/OIP.bFpvIcvCJU6mNMH017UeaAHaIp?pid=Api&P=0&h=220" alt="Operating System Concepts"></td>
+      <td>Operating System Concepts</td>
+      <td>Silberschatz</td>
+      <td>Computer Science</td>
+      <td class="price">₹1129</td>
+      <td><button class="add-btn" onclick="addToCart('Operating System Concepts', '1129')">Add to Cart</button></td>
+    </tr>
+
+    <tr>
+      <td><img src="https://m.media-amazon.com/images/I/41QzAMky0dL.jpg" alt="Database System Concepts"></td>
+      <td>Database System Concepts</td>
+      <td>Korth</td>
+      <td>Computer Science</td>
+      <td class="price">₹780</td>
+      <td><button class="add-btn" onclick="addToCart('Database System Concepts', '780')">Add to Cart</button></td>
+    </tr>
+
+    <tr>
+      <td><img src="https://tse4.mm.bing.net/th/id/OIP.p8bEvQ9yIU4xG9ljKG0FcQHaJr?pid=Api&P=0&h=220" alt="Engineering Circuit Analysis"></td>
+      <td>Engineering Circuit Analysis</td>
+      <td>William Hayt</td>
+      <td>Electrical Engineering</td>
+      <td class="price">₹499</td>
+      <td><button class="add-btn" onclick="addToCart('Engineering Circuit Analysis', '499')">Add to Cart</button></td>
+    </tr>
+
+    <tr>
+      <td><img src="https://down-ph.img.susercontent.com/file/c45f4b76f20a94a803061138b1650f80" alt="Electrical Machines"></td>
+      <td>Electrical Machines</td>
+      <td>Charles Siskind</td>
+      <td>Electrical Engineering</td>
+      <td class="price">₹1800</td>
+      <td><button class="add-btn" onclick="addToCart('Electrical Machines', '1800')">Add to Cart</button></td>
+    </tr>
+
+    <tr>
+      <td><img src="https://images-na.ssl-images-amazon.com/images/I/91S25rDaBzL.jpg" alt="Power System"></td>
+      <td>Power System</td>
+      <td>VK Mehta</td>
+      <td>Electrical Engineering</td>
+      <td class="price">₹800</td>
+      <td><button class="add-btn" onclick="addToCart('Power System', '800')">Add to Cart</button></td>
+    </tr>
+
+    <tr>
+      <td><img src="https://tse2.mm.bing.net/th/id/OIP.NDr-kM0r2ZVDWfi4CoODwgHaJ4?pid=Api&P=0&h=220" alt="Digital Electronics"></td>
+      <td>Digital Electronics</td>
+      <td>Anand Kumar</td>
+      <td>Electronics and Communication</td>
+      <td class="price">₹670</td>
+      <td><button class="add-btn" onclick="addToCart('Digital Electronics', '670')">Add to Cart</button></td>
+    </tr>
+
+    <tr>
+      <td><img src="https://tse2.mm.bing.net/th/id/OIP.s8Anztn6_BHXK95-EIBOQAHaJ0?pid=Api&P=0&h=220" alt="Communication System"></td>
+      <td>Communication System</td>
+      <td>Simon Haykin</td>
+      <td>Electronics and Communication</td>
+      <td class="price">₹520</td>
+      <td><button class="add-btn" onclick="addToCart('Communication System', '520')">Add to Cart</button><
+      <div style="text-align:center; margin-top:20px;">
+  <a href="cart.html" style="color:#640741; font-weight:bold;">Go to Cart</a>
+</div>
+
+<script>
+  function addToCart(title, price) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let existing = cart.find(item => item.title === title);
+
+    if (existing) {
+      existing.quantity += 1;
+    } else {
+      cart.push({ title, price, quantity: 1 });
+    }
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+    alert(`${title} added to your cart!`);
+  }
+</script>
+</body>
+</html>
+    
