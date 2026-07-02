@@ -1,1 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Registration Page</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .card {
+    background: #fff;
+    width: 100%;
+    max-width: 550px;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  label {
+    font-weight: bold;
+    display: block;
+    margin-top: 12px;
+  }
+
+  input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    border-radius: 6px;
+    border: 2px solid #ccc;
+    outline: none;
+    transition: all 0.3s;
+  }
+
+  input:focus, textarea:focus, select:focus {
+    border-color: #7f5af0;
+    box-shadow: 0 0 8px rgba(127,90,240,0.3);
+  }
+
+  input.valid, textarea.valid, select.valid {
+    border-color: #28a745;
+    background-color: #e6ffed;
+  }
+
+  input.invalid, textarea.invalid, select.invalid {
+    border-color: #dc3545;
+    background-color: #ffe6e6;
+  }
+
+  .error {
+    color: #dc3545;
+    font-size: 0.85em;
+    opacity: 0;
+    height: 0;
+    transition: opacity 0.3s, height 0.3s;
+  }
+
+  .error.active {
+    opacity: 1;
+    height: auto;
+  }
+
+  button {
+    margin-top: 20px;
+    width: 100%;
+    padding: 12px;
+    background: #7f5af0;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  button:hover {
+    background: #6434c7;
+    transform: translateY(-2px);
+  }
+
+  #successMessage {
+    text-align: center;
+    margin-top: 15px;
+    font-weight: bold;
+    color: #28a745;
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+  #successMessage.show {
+    opacity: 1;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <h2>Registration Form</h2>
+
+  <form id="registrationForm">
+
+    <!-- NAME -->
+    <label>Name:</label>
+    <input type="text" id="name">
+    <div class="error" id="nameError">Name must be at least 6 letters (A–Z only).</div>
+
+    <!-- PASSWORD -->
+    <label>Password:</label>
+    <input type="password" id="password">
+    <div class="error" id="passwordError">Password must be at least 6 characters.</div>
+
+    <!-- EMAIL -->
+    <label>E-mail ID:</label>
+    <input type="email" id="email">
+    <div class="error" id="emailError">Enter a valid email: name@example.com</div>
+
+    <!-- PHONE -->
+    <label>Phone Number:</label>
+    <input type="text" id="phone">
+    <div class="error" id="phoneError">Phone must be exactly 10 digits.</div>
+
+    <!-- SEX -->
+    <label>Sex:</label>
+    <input type="radio" name="sex" value="Male"> Male
+    <input type="radio" name="sex" value="Female"> Female
+    <input type="radio" name="sex" value="Other"> Other
+
+    <!-- DOB -->
+    <label>Date of Birth:</label>
+    <div style="display:flex; gap:8px;">
+      <select id="day">
+        <option value="">Day</option>
+      </select>
+      <select id="month">
+        <option value="">Month</option>
+        <option>Jan</option><option>Feb</option><option>Mar</option><option>Apr</option>
+        <option>May</option><option>Jun</option><option>Jul</option><option>Aug</option>
+        <option>Sep</option><option>Oct</option><option>Nov</option><option>Dec</option>
+      </select>
+      <select id="year">
+        <option value="">Year</option>
+      </select>
+    </div>
+
+    <!-- ADDRESS -->
+    <label>Address:</label>
+    <textarea id="address" rows="3"></textarea>
+    <div class="error" id="addressError">Address cannot be empty.</div>
+
+    <button type="submit">Register</button>
+    <p id="successMessage">Form Submitted Successfully!</p>
+
+  </form>
+</div>
+
+<script>
+// Fill DOB dropdowns
+for(let d=1; d<=31; d++)
+  document.getElementById("day").innerHTML += `<option>${d}</option>`;
+for(let y=1980; y<=2025; y++)
+  document.getElementById("year").innerHTML += `<option>${y}</option>`;
+
+// Inputs
+const nameInput = document.getElementById("name");
+const passInput = document.getElementById("password");
+const emailInput = document.getElementById("email");
+const phoneInput = document.getElementById("phone");
+const addressInput = document.getElementById("address");
+
+// Errors
+const nameErr = document.getElementById("nameError");
+const passErr = document.getElementById("passwordError");
+const emailErr = document.getElementById("emailError");
+const phoneErr = document.getElementById("phoneError");
+const addrErr = document.getElementById("addressError");
+
+// Real-time validation
+nameInput.addEventListener("input", () => {
+  if(/^[A-Za-z]{6,}$/.test(nameInput.value.trim())) {
+    validate(nameInput, nameErr, true);
+  } else {
+    validate(nameInput, nameErr, false);
+  }
+});
+
+passInput.addEventListener("input", () => {
+  validate(passInput, passErr, passInput.value.length >= 6);
+});
+
+emailInput.addEventListener("input", () => {
+  const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-z]{2,4}$/;
+  validate(emailInput, emailErr, pattern.test(emailInput.value.trim()));
+});
+
+phoneInput.addEventListener("input", () => {
+  validate(phoneInput, phoneErr, /^\d{10}$/.test(phoneInput.value.trim()));
+});
+
+addressInput.addEventListener("input", () => {
+  validate(addressInput, addrErr, addressInput.value.trim().length > 0);
+});
+
+// Validation helper
+function validate(input, errorBox, condition) {
+  if(condition) {
+    input.classList.add("valid");
+    input.classList.remove("invalid");
+    errorBox.classList.remove("active");
+  } else {
+    input.classList.add("invalid");
+    input.classList.remove("valid");
+    errorBox.classList.add("active");
+  }
+}
+
+// Submit
+document.getElementById("registrationForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const success = document.getElementById("successMessage");
+
+  if (
+    nameInput.classList.contains("valid") &&
+    passInput.classList.contains("valid") &&
+    emailInput.classList.contains("valid") &&
+    phoneInput.classList.contains("valid") &&
+    addressInput.classList.contains("valid")
+  ) {
+    success.classList.add("show");
+  } else {
+    success.classList.remove("show");
+    alert("Please correct the errors before submitting.");
+  }
+});
+</script>
+
+</body>
+</html>
